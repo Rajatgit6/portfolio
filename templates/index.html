@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- ===== CSS Files ===== -->
+  <link rel="stylesheet" href=" /static/css/style1.css">
+  <link rel="stylesheet" href="/static/css/skins/color-2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- ====== Style Switcher ====== -->
+  <link rel="stylesheet" href="/static/css/skins/color-1.css" class="alternate-style" title="color-1" disabled>
+  <link rel="stylesheet" href="/static/css/skins/color-2.css" class="alternate-style" title="color-2" disabled>
+  <link rel="stylesheet" href="/static/css/skins/color-3.css" class="alternate-style" title="color-3" disabled>
+  <link rel="stylesheet" href="/static/css/skins/color-4.css" class="alternate-style" title="color-4" disabled>
+  <link rel="stylesheet" href="/static/css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
+  <link rel="stylesheet" href="/static/css/style-switcher.css">
+</head>
+<body>
+  <!-- ===== Main Container Start ===== -->
+  <div class="main-container">
+    <!-- ===== Aside Start ===== -->
+    <div class="aside">
+      <div class="logo">
+        <a href="#"><span>A</span>tlas</a>
+      </div>
+      <div class="nav-toggler">
+        <span></span>
+      </div>
+      <ul class="nav">
+        <li><a href="#home" class="active"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fa fa-user"></i> About</a></li>
+        <li><a href="#services"><i class="fa fa-list"></i>Services</a></li>
+        <li><a href="#portfolio"><i class="fa fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="#contact"><i class="fa fa-comments"></i>Contact</a></li>
+      </ul>
+    </div>
+    <!-- ===== Aside End ===== -->
+    <!-- ===== Main Content Start ===== -->
+    <div class="main-content">
+      <!-- ===== Home Section Start ===== -->
+      <section class="home section" id="home">
+        <div class="container">
+          <div class="row">
+		  {% for i in Name %}
+            <div class="home-info padd-15">
+			  
+              <h3 class="hello">Hello, my name is <span class="name">{{ i.salutation }}</span></h3>
+              <h3 class="my-profession">I' m a <span class="txt-rotate" data-period="20" data-rotate='[ "{{i.skills1}}", "Nutritious.", "Delicious.", "fun!" ]'></span></h3>
+			  
+              <p>{{i.desc|safe}}</p>
+              
+			  <a href="#contact" class="btn hire-me">Hire Me</a>
+            </div>
+			
+            <div class="home-img padd-15">
+              <img src="media/{{i.your_image}}" alt="">
+            </div>
+			{% endfor %}
+          </div>
+        </div>
+      </section>
+      <!-- ===== Home Section End ===== -->
+      <!-- ===== About Section Start ===== -->
+      <section class="about section" id="about">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>About Me</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="about-content padd-15">
+			{% for about in intro %}
+              <div class="row">
+                <div class="about-text padd-15">
+                  
+                  <p>{{about.about_you|safe}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="personal-info padd-15">
+                  <div class="row">
+                    <div class="info-item padd-15">
+                      <p>Birthday : <span>{{about.Date_of_Birth}}</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Gender : <span>{{about.sex}}</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Website : <span>{{about.website}}</span></p>
+                    </div>
+					
+                    <div class="info-item padd-15">
+                      <p>Email : <span>{{about.email}}</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Degree : <span>{{about.Degree}}</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Phone : <span>{{about.Phone}}</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>City : <span>{{about.city}}</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Freelnace : <span>Available</span></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="buttons padd-15">
+                      <a href="media/{{about.Resume}}" download class="btn">Download CV</a>
+                      <a href="#contact" class="btn hire-me">Hire Me</a>
+                    </div>
+                  </div>
+                </div>
+				{% endfor %}
+                <div class="skills padd-15">
+                  <div class="row">
+				  {% for skill in skill %}
+                    <div class="skill-item padd-15">
+                      <h5>{{skill.skills_title}}</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: {{skill.konwledge_percentage}}%;"></div>
+                        <div class="skill-percent">{{skill.konwledge_percentage}}%</div>
+                      </div>
+                    </div>
+					{% endfor %}
+                    </div>
+                  </div>
+                
+              </div>
+              <div class="row">
+                <div class="education padd-15">
+                  <h3 class="title">Education</h3>
+                  <div class="row">
+                    <div class="timeline-box padd-15">
+                      <div class="timeline shadow-dark">
+                        <!-- ===== timeline item ===== -->
+						{% for edu in education %}
+                        <div class="timeline-item">
+                          <div class="circle-dot"></div>
+                          <h3 class="timeline-date">
+                            <i class="fa fa-calendar"></i> {{edu.strt_year1}} - {{edu.end_year1}}
+                          </h3>
+                          <h4 class="timeline-title">{{edu.course_name}}</h4>
+                          <p class="timeline-text">{{edu.course_desc|safe}}</p>
+                        </div>
+                             {% endfor %}
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="experience padd-15">
+                  <h3 class="title">Experience</h3>
+                  <div class="row">
+                    <div class="timeline-box padd-15">
+                      <div class="timeline shadow-dark">
+                        <!-- ===== timeline item ===== -->
+						{% for exp in experience %}
+                        <div class="timeline-item">
+                          <div class="circle-dot"></div>
+                          <h3 class="timeline-date">
+                            <i class="fa fa-calendar"></i>{{exp.strt_year}} - {{exp.end_year}}
+                          </h3>
+                          <h4 class="timeline-title">{{exp.exp_title}}</h4>
+                          <p class="timeline-text">{{exp.exp_desc|safe}}</p>
+                        </div>
+                             <!-- ===== timeline item ===== -->
+                           
+                                 <!-- ===== timeline item ===== -->
+                     {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== About Section End ===== -->
+      <!-- ===== Services Section Start ===== -->
+      <section class="service section" id="services">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Services</h2>
+            </div>
+          </div>
+          <div class="row">
+		  {% for serv in service %}
+            <!-- ===== Service item Start ====== -->
+            <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon">
+                  <i class="{{serv.category}}"></i>
+                </div>
+				<h4>{{serv.category}}</h4>
+                <h4>{{serv.service_title}}</h4>
+                <p>{{serv.service_desc}}</p>
+              </div>
+            </div>
+            <!-- ===== Service item End ====== -->
+           
+          
+		  {% endfor %}
+        </div>
+      </section>
+      <!-- ===== Services Section End ===== -->
+      <!-- ===== Portfolio Section Start ===== -->
+      <section class="portfolio section" id="portfolio">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Portfolio</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="portfolio-heading padd-15">
+              <h2>My Last Projects :</h2>
+            </div>
+          </div>
+          <div class="row">
+            <!-- ====== portfolio item start ====== -->
+			{% for projects in project %}
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                 <a href="{{projects.links}}"> <img src="/media/{{projects.Portfolio_picture}}" alt=""></a>
+                </div>
+              </div>
+            </div>
+            <!-- ====== portfolio item End ====== -->
+
+            {% endfor %} 
+          </div>
+        </div>
+      </section>
+      <!-- ===== Portfolio Section End ===== -->
+      <!-- ===== Contact Section Start ===== -->
+      <section class="contact section" id="contact">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Contact Me</h2>
+            </div>
+          </div>
+          <h3 class="contact-title padd-15">Have You Any Questions ?</h3>
+          <h4 class="contact-sub-title padd-15">I'M AT YOUR SERVICES</h4>
+          <div class="row">
+            <!-- ===== Contact info item start ====== -->
+			{% for c in contacts %}
+            <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-phone"></i></div>
+              <h4>Call Us On</h4>
+              <p>+92 {{c.contact_no}}</p>
+            </div>
+            <!-- ===== Contact info item end ====== -->
+             <!-- ===== Contact info item start ====== -->
+             <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-map-marker-alt"></i></div>
+              <h4>Office</h4>
+              <p>{{c.office}}</p>
+            </div>
+            <!-- ===== Contact info item end ====== -->
+             <!-- ===== Contact info item start ====== -->
+             <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-envelope"></i></div>
+              <h4>Email</h4>
+              <p>{{c.email_id}}</p>
+            </div>
+            <!-- ===== Contact info item end ====== -->
+             <!-- ===== Contact info item start ====== -->
+             <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-globe-europe"></i></div>
+              <h4>Website</h4>
+              <p>{{c.website_name}}</p>
+            </div>
+			{% endfor %}
+            <!-- ===== Contact info item end ====== -->
+          </div>
+          <h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
+          <h4 class="contact-sub-title padd-15">I'M VERY RESPOSIVE TO MESSAGES</h4>
+          <!-- ====== Contact Form ====== -->
+       <form method="POST" >
+		{% csrf_token %}
+		  <div class="row">
+            <div class="contact-form padd-15">
+              <div class="row">
+                <div class="form-item col-6 padd-15">
+                  <div class="form-group">
+                    <input type="text" name="Name1" class="form-control" placeholder="Name">
+                  </div>
+                </div>
+                <div class="form-item col-6 padd-15">
+                  <div class="form-group">
+                    <input type="email" name="mails" class="form-control" placeholder="Email">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-item col-12 padd-15">
+                  <div class="form-group">
+                    <input type="text" name="subject" class="form-control" placeholder="Subject">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-item col-12 padd-15">
+                  <div class="form-group">
+                    <textarea name="text2" class="form-control" id=""  placeholder="Message"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-item col-12 padd-15">
+                  <button type="submit" class="btn">Send Message</button>
+                </div>
+              </div>
+            </div>
+          </div>
+		  </form>
+        </div>
+      </section>
+      <!-- ===== Contact Section End ===== -->
+    </div>
+    <!-- ===== Main Content End ===== -->
+  </div>
+  <!-- ===== Main Container End ===== -->
+  <!-- ===== Style Switcher Start ===== -->
+  <div class="style-switcher">
+    <div class="style-switcher-toggler s-icon">
+      <i class="fas fa-cog fa-spin"></i>
+    </div>
+    <div class="day-night s-icon">
+      <i class="fas "></i>
+    </div>
+    <h4>Theme Colors</h4>
+    <div class="colors">
+      <span class="color-1" onclick="setActiveStyle('color-1')"></span>
+      <span class="color-2" onclick="setActiveStyle('color-2')"></span>
+      <span class="color-3" onclick="setActiveStyle('color-3')"></span>
+      <span class="color-4" onclick="setActiveStyle('color-4')"></span>
+      <span class="color-5" onclick="setActiveStyle('color-5')"></span>
+    </div>
+  </div>
+  <!-- ===== Style Switcher End ===== -->
+  <!-- ===== JS Files ===== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" referrerpolicy="no-referrer"></script>
+  
+  <script>
+
+  var typed = new Typed(".typing",{
+    strings:["","Web Designer","Web Developer","Graphic Designer","YouTuber"],
+    typeSpeed:100,
+    BackSpeed:60,
+    loop:true
+})</script>
+  <script src="/static/js/style-switcher.js"></script>
+	<script src="/static/js/script1.js"></script>
+	
+  </body>
+</html>
